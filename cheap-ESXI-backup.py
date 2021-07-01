@@ -75,15 +75,14 @@ m = re.match(r"b'   World ID: (\d+)\\n'", str)
 ##from the re match the index 1 return the matched result###                                                                            
 ############################################################                                                                            
 world_id = m.group(1)                                                                                                                   
-print(world_id)                                                                                                                         
+                                                                                                                      
                                                                                                                                         
 ##################################                                                                                                      
 #Make sure the world ID was set###                                                                                                      
 ##################################                                                                                                      
 try:                                                                                                                                    
     world_id                                                                                                                            
-except:                                                                                                                                 
-    print ("World ID not found for given VM name. Exitting.")                                                                           
+except:                                                                                                                                                                                                            
     logging.warning("World ID is not set")                                                                                              
     exit()                                                                                                                              
                                                                                                                                         
@@ -126,16 +125,14 @@ try:
     VMDKcp = subprocess.Popen("vmkfstools -i " + vmdk + " " + destVMDK + " -d thin -a buslogic", shell=True, stdout=subprocess.PIPE)    
     VMDKcp.wait()                                                                                                                       
                                                                                                                                         
-except:                                                                                                                                 
-    print ("Unable to copy the VM")                                                                                                     
+except:                                                                                                                                                                                                                                 
     logging.warning("Script unable to copy the VMDK")                                                                                   
     exit()                                                                                                                              
                                                                                                                                         
 time.sleep(5)                                                                                                                           
 vim_cmd = "vim-cmd vmsvc/power.on " + id                                                                                                
 try:                                                                                                                                    
-    VIMcmd = subprocess.run(vim_cmd, shell=True)                                                                                        
-    print("Started VM again")                                                                                                           
+    VIMcmd = subprocess.run(vim_cmd, shell=True)                                                                                                                                                                                               
     logging.info("VM started again.")                                                                                                   
 except:                                                                                                                                 
     logging.warning("Could not start VM")                                                                                               
